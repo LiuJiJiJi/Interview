@@ -49,8 +49,8 @@ Due to government regulation, the system should provide me with the ability to f
 
 We interact with the system via a simple set of commands which produce a specific output. Please take a look
 at the example below, which includes all the commands you need to support - they're self explanatory.
-1. It should provide us with an interactive command prompt based shell where commands can be typed in
-2. It should accept a filename as a parameter at the command prompt and read the commands from that
+1. It should provide us with an interactive service prompt based shell where commands can be typed in
+2. It should accept a filename as a parameter at the service prompt and read the commands from that
 file
 
 **Example: File** To install all dependencies, compile and run tests:
@@ -116,7 +116,7 @@ To run the program and launch the shell:
 $ bin/parking_lot
 ```
 Assuming a parking lot with 6 slots, the following commands should be run in sequence by typing them in at a
-prompt and should produce output as described below the command. Note that exit terminates the process
+prompt and should produce output as described below the service. Note that exit terminates the process
 and returns control to the shell.
 ```bash
 $ create_parking_lot 6
