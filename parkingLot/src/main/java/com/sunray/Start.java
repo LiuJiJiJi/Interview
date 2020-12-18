@@ -1,9 +1,8 @@
-package com.sunary;
+package com.sunray;
 
-import com.sunary.service.CommandService;
-import com.sunary.service.impl.ExitCommandService;
-import com.sunary.service.impl.StatusCommandService;
-
+import com.sunray.common.expection.SunrayException;
+import com.sunray.service.CommandService;
+import com.sunray.service.impl.ParkCommandService;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -14,12 +13,14 @@ public class Start {
         System.out.println("=====================Parking Lot Start=====================");
 
         Map<String, CommandService> commandServiceMap = new HashMap<String, CommandService>();
-        commandServiceMap.put("status", new StatusCommandService());
-        commandServiceMap.put("exit", new ExitCommandService());
+//        commandServiceMap.put("status", new StatusCommandService());
+//        commandServiceMap.put("exit", new ExitCommandService());
+        commandServiceMap.put("park", new ParkCommandService());
+//        commandServiceMap.put("leave", new LeaveCommandService());
 
         StringBuffer helpMessage = new StringBuffer();
         for (Map.Entry<String, CommandService> entry: commandServiceMap.entrySet()) {
-            helpMessage.append("       ").append(entry.getKey()).append("\n");
+            helpMessage.append("    ").append(entry.getKey()).append("\n");
         }
 
         do {
@@ -32,12 +33,20 @@ public class Start {
 
                 CommandService commandService = commandServiceMap.get(firstParam);
                 if (commandService == null) {
-                    System.out.println(firstParam + " is support command; please input command as follow：");
+                    System.out.println("\"" + firstParam + "\" is support command; please input command as follow：");
                     System.out.println(helpMessage);
                     continue;
                 }
 
-                System.out.println("params:" + params.toString());
+                try {
+                    commandService.start(params);
+                } catch (SunrayException e) {
+                    System.err.println(e.getMessage());
+                } catch (Exception e) {
+                    System.err.println("Unknown Exception; Please contract developer to fix this issue!");
+                    e.printStackTrace();
+                }
+
             }
         } while (true);
     }
