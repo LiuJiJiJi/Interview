@@ -1,3 +1,4 @@
+package com.sunary;
 
 import com.sunary.service.CommandService;
 import com.sunary.service.impl.ExitCommandService;
