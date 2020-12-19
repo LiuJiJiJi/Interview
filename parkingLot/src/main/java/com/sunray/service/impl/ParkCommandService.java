@@ -26,8 +26,8 @@ public class ParkCommandService extends CommandService {
     }
 
     @Override
-    public String[] getParamsTemplate() throws Exception {
-        return paramsTemplate;
+    public String getParamsTemplateString() {
+        return paramsTemplateString;
     }
 
 }

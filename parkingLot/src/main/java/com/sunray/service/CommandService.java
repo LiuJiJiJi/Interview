@@ -8,7 +8,7 @@ package com.sunray.service;
 public abstract class CommandService {
    public abstract void validate(String[] params) throws Exception;
    public abstract void run(String[] params) throws Exception;
-   public abstract String[] getParamsTemplate() throws Exception;
+   public abstract String getParamsTemplateString();
 
    public void start(String[] params) throws Exception{
       this.validate(params);
