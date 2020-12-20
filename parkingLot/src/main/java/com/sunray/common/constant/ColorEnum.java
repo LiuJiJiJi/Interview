@@ -8,9 +8,9 @@ public enum ColorEnum {
     BLACK("black"),
     Unknown("unknown");
 
-    public String color;
+    public String value;
 
-    ColorEnum(String color) {
-        this.color = color;
+    ColorEnum(String value) {
+        this.value = value;
     }
 }

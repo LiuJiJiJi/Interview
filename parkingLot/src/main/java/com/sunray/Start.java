@@ -1,10 +1,8 @@
 package com.sunray;
 
 import com.sunray.common.expection.SunrayException;
-import com.sunray.common.util.RedisUtil;
 import com.sunray.service.CommandService;
 import com.sunray.service.impl.ParkCommandService;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,10 +13,10 @@ public class Start {
         System.out.println("=====================Parking Lot Start=====================");
 
         Map<String, CommandService> commandServiceMap = new ConcurrentHashMap<>();
-//        commandServiceMap.put("status", new StatusCommandService());
-//        commandServiceMap.put("exit", new ExitCommandService());
+        // commandServiceMap.put("status", new StatusCommandService());
+        // commandServiceMap.put("exit", new ExitCommandService());
+        // commandServiceMap.put("leave", new LeaveCommandService());
         commandServiceMap.put("park", new ParkCommandService());
-//        commandServiceMap.put("leave", new LeaveCommandService());
 
         StringBuffer helpMessage = new StringBuffer();
         for (Map.Entry<String, CommandService> entry: commandServiceMap.entrySet()) {
