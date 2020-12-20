@@ -1,10 +1,8 @@
 package com.sunray.common.constant;
 
-import java.net.URL;
-
 public class DBConstant {
 
-    public final static String DB_TYPE = DBEnum.REDIS.value;
+    public static DBEnum DB_TYPE = DBEnum.REDIS;
 
 
     // ==============================Redis================================

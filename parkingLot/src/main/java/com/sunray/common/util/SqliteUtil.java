@@ -1,12 +1,10 @@
 package com.sunray.common.util;
 
-import com.sunray.common.constant.ColorEnum;
 import com.sunray.common.constant.DBConstant;
-import com.sunray.entity.modal.ParkSlot;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class SqliteUtil {
 
@@ -27,7 +25,7 @@ public class SqliteUtil {
 
     public static void main(String[] args) throws ClassNotFoundException {
 
-        try {
+     /*   try {
 
             Statement statement = connection.createStatement();
 
@@ -53,11 +51,11 @@ public class SqliteUtil {
 
             List<ParkSlot> list = new ArrayList<>();
             list.add(new ParkSlot(1, "Tom", ColorEnum.WHITE.value));
-            list.add(new ParkSlot(2, "11", ColorEnum.WHITE.value));
-            list.add(new ParkSlot(3, "Tom", ColorEnum.WHITE.value));
+            list.add(new ParkSlot(2L, "11", ColorEnum.WHITE.value));
+            list.add(new ParkSlot(3L, "Tom", ColorEnum.WHITE.value));
 
             for(ParkSlot person: list){
-                preparedStatement.setInt(1, person.getId());
+                preparedStatement.setLong(1, person.getNumber());
                 preparedStatement.setString(2, person.getCarNumber());
                 preparedStatement.setString(2, person.getColor());
                 preparedStatement.addBatch();
@@ -84,7 +82,7 @@ public class SqliteUtil {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
 
