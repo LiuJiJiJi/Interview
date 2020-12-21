@@ -36,7 +36,7 @@ public class ParkSlotRepositoryTest {
     @Test
     public void searchTest() {
         ParkSlot search = new ParkSlot();
-        List<ParkSlot> parkSlots = parkSlotRepository.getAll(search);
+        List<ParkSlot> parkSlots = parkSlotRepository.getAll();
 
         assertNotNull(parkSlots);
     }
@@ -48,8 +48,7 @@ public class ParkSlotRepositoryTest {
             parkSlotRepository.create(parkSlot);
         }
 
-        ParkSlot parkSlot = new ParkSlot();
-        List<ParkSlot> parkSlots = parkSlotRepository.getAll(parkSlot);
+        List<ParkSlot> parkSlots = parkSlotRepository.getAll();
         assertEquals(6, parkSlots.size());
     }
 
@@ -77,12 +76,12 @@ public class ParkSlotRepositoryTest {
     @Test
     public void deleteAllTest() {
         ParkSlot search = new ParkSlot();
-        List<ParkSlot> parkSlots = parkSlotRepository.getAll(search);
+        List<ParkSlot> parkSlots = parkSlotRepository.getAll();
         parkSlots.forEach((x) -> {
             parkSlotRepository.deleteBySlotNumber(x.getNumber());
         });
 
-        parkSlots = parkSlotRepository.getAll(search);
+        parkSlots = parkSlotRepository.getAll();
         assertEquals(0, parkSlots.size());
 
     }

@@ -12,36 +12,39 @@ import java.util.stream.Collectors;
 
 public class RedisParkSlotRepository implements ParkSlotRepository {
 
+    private final String redisKey = CacheKey.PARK_SLOT_KEY;
+
     @Override
     public ParkSlot getBySlotNumber(String slotNumber) {
-        String parkSlotString = JedisUtil.hget(CacheKey.PARK_SLOT_KEY, slotNumber);
+        String parkSlotString = JedisUtil.hget(redisKey, slotNumber);
         ParkSlot parkSlot = JSON.parseObject(parkSlotString, ParkSlot.class);
         return parkSlot;
     }
 
     @Override
-    public List<ParkSlot> getAll(ParkSlot parkSlot) {
-        Map<String, String> parkSlotMap = JedisUtil.hgetAll(CacheKey.PARK_SLOT_KEY);
+    public List<ParkSlot> getAll() {
+        Map<String, String> parkSlotMap = JedisUtil.hgetAll(redisKey);
         List<ParkSlot> parkSlots = parkSlotMap.values().stream().map((x) -> JSON.parseObject(x, ParkSlot.class)).collect(Collectors.toList());
+        parkSlots.sort((a, b) -> b.getNumber().compareTo(a.getNumber()));
         return parkSlots;
     }
 
     @Override
     public ParkSlot create(ParkSlot parkSlot) {
         String jsonString = JSON.toJSONString(parkSlot);
-        JedisUtil.hset(CacheKey.PARK_SLOT_KEY, parkSlot.getNumber(), jsonString);
+        JedisUtil.hset(redisKey, parkSlot.getNumber(), jsonString);
         return parkSlot;
     }
 
     @Override
     public void update(ParkSlot parkSlot) {
         String jsonString = JSON.toJSONString(parkSlot);
-        JedisUtil.hset(CacheKey.PARK_SLOT_KEY, parkSlot.getNumber(), jsonString);
+        JedisUtil.hset(redisKey, parkSlot.getNumber(), jsonString);
     }
 
     @Override
     public void deleteBySlotNumber(String slotNumber) {
-        JedisUtil.hdel(CacheKey.PARK_SLOT_KEY, slotNumber);
+        JedisUtil.hdel(redisKey, slotNumber);
     }
 
 }

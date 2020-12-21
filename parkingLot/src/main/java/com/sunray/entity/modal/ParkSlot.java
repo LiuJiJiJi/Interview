@@ -3,6 +3,12 @@ package com.sunray.entity.modal;
 import javax.validation.constraints.NotNull;
 
 public class ParkSlot {
+
+    /**
+     * @Description: number rule：
+     *   rule one: 1, 2, 3, 4 ,5 ,6 .....
+     *   rule two: 1A, 1B, 2A, 2B, 3A, 3B .....
+     */
     @NotNull(message = "slot id cannot be null")
     private String number;
     @NotNull(message = "Car number cannot be null")
