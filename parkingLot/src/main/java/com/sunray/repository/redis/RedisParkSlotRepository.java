@@ -30,6 +30,16 @@ public class RedisParkSlotRepository implements ParkSlotRepository {
     }
 
     @Override
+    public ParkSlot getByCarNumber(String carNumber) {
+        List<ParkSlot> allParkSlots = getAll();
+        List<ParkSlot> parkSlots = allParkSlots.stream().filter(x -> carNumber.equals(x.getCarNumber())).collect(Collectors.toList());
+        if (parkSlots.size() < 1) {
+            return null;
+        }
+        return parkSlots.get(0);
+    }
+
+    @Override
     public List<ParkSlot> getAll() {
         Map<String, String> parkSlotMap = JedisUtil.hgetAll(redisKey);
         List<ParkSlot> parkSlots = parkSlotMap.values().stream().map((x) -> JSON.parseObject(x, ParkSlot.class)).collect(Collectors.toList());

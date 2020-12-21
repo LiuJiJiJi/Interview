@@ -3,6 +3,7 @@ package com.sunray.service.impl;
 import com.sunray.common.constant.ColorEnum;
 import com.sunray.common.constant.DBConstant;
 import com.sunray.common.expection.NoParkSlotException;
+import com.sunray.common.expection.SunrayException;
 import com.sunray.common.expection.ValidationException;
 import com.sunray.entity.modal.ParkHistory;
 import com.sunray.entity.modal.ParkSlot;
@@ -46,6 +47,13 @@ public class ParkCommandService extends CommandService<ParkSlot> {
         if (params.length != 3) {
             throw new ValidationException(tipMessage);
         }
+
+        String carNumber = params[1];
+        ParkSlot parkSlot = parkSlotRepository.getByCarNumber(carNumber);
+        if (parkSlot != null) {
+            throw new SunrayException("Your car has park on slot number: " + parkSlot.getNumber());
+        }
+
     }
 
     @Override
@@ -68,6 +76,11 @@ public class ParkCommandService extends CommandService<ParkSlot> {
         parkHistory.setCarNuber(parkSlot.getCarNumber());
         parkHistory.setEnterTime(new Date());
         parkHistory = parkHistoryRepository.create(parkHistory);
+
+        String message = "Allocated slot number: ${slotNumber}";
+        message = message.replace(" ${slotNumber}", parkSlot.getNumber());
+        System.out.println(message);
+
         return parkSlot;
     }
 

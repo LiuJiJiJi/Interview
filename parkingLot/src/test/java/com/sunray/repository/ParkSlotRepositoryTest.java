@@ -39,8 +39,10 @@ public class ParkSlotRepositoryTest {
 
     @Test
     public void createTest() {
-        for (int i = 1; i < 7; i++) {
+        parkSlotRepository.deleteAll();
+        for (long i = 1; i < 7; i++) {
             ParkSlot parkSlot = new ParkSlot(i + "", GenerateUtil.singaporeCarnumber(), ColorEnum.WHITE.value);
+            parkSlot.setId(i);
             parkSlotRepository.create(parkSlot);
         }
 
@@ -79,7 +81,6 @@ public class ParkSlotRepositoryTest {
 
         parkSlots = parkSlotRepository.getAll();
         assertEquals(0, parkSlots.size());
-
     }
 
 }

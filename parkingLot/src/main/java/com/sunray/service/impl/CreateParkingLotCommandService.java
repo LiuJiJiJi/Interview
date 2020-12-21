@@ -54,7 +54,13 @@ public class CreateParkingLotCommandService extends CommandService<List<ParkSlot
             parkSlot.setNumber(i+"");
             parkSlotRepository.create(parkSlot);
         }
-        return parkSlotRepository.getAll();
+        List<ParkSlot> parkSlots = parkSlotRepository.getAll();
+
+        String message = "Created a parking lot with ${count} slots";
+        message = message.replace("${count}", parkSlots.size() + "");
+        System.out.println(message);
+
+        return parkSlots;
     }
 
     @Override

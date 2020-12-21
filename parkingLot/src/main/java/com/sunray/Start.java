@@ -2,6 +2,8 @@ package com.sunray;
 
 import com.sunray.common.expection.SunrayException;
 import com.sunray.service.CommandService;
+import com.sunray.service.impl.CreateParkingLotCommandService;
+import com.sunray.service.impl.LeaveParkCommandService;
 import com.sunray.service.impl.ParkCommandService;
 import java.util.Map;
 import java.util.Scanner;
@@ -13,16 +15,15 @@ public class Start {
         System.out.println("=====================Parking Lot Start=====================");
 
         Map<String, CommandService> commandServiceMap = new ConcurrentHashMap<>();
-        // commandServiceMap.put("status", new StatusCommandService());
-        // commandServiceMap.put("exit", new ExitCommandService());
-        // commandServiceMap.put("leave", new LeaveCommandService());
+        commandServiceMap.put("create_parking_lot", new CreateParkingLotCommandService());
         commandServiceMap.put("park", new ParkCommandService());
+        commandServiceMap.put("leave", new LeaveParkCommandService());
 
         StringBuffer helpMessage = new StringBuffer();
         for (Map.Entry<String, CommandService> entry: commandServiceMap.entrySet()) {
             helpMessage.append("\t")
                     .append(entry.getKey())
-                    .append(": ")
+                    .append(": \t")
                     .append(entry.getValue().getParamsTemplateString())
                     .append("\n");
         }
@@ -31,7 +32,7 @@ public class Start {
             Scanner input = new Scanner(System.in);
             if (input.hasNext()) {
 
-                String inputValue = input.next();
+                String inputValue = input.nextLine();
                 String[] params = inputValue.trim().split(" ");
                 String firstParam = params[0];
 
