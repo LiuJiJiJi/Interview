@@ -8,20 +8,10 @@ public class GenerateUtil {
 
 
     public static String singaporeCarnumber() {
-        /*String[] citys = {"津", "京", "宁"};
-        StringsectionNamePre = "断面";*/
         String onePart = RandomStringUtils.randomAlphabetic(2).toUpperCase();
         String twoPart = RandomStringUtils.randomNumeric(2);
         String threePart = RandomStringUtils.randomAlphabetic(2).toUpperCase();
         String fourPart = RandomStringUtils.randomNumeric(4);
-        /*String city = citys[(new Random().nextInt(3))]; //随机取津、京、宁
-        StringBuffer plateNumStr = new StringBuffer(city); //下面开始：拼接车牌号，并随机产生0到9的6位车牌号
-        plateNumStr.append(new Random().nextInt(10))
-                .append(new Random().nextInt(10))
-                .append(new Random().nextInt(10))
-                .append(new Random().nextInt(10))
-                .append(new Random().nextInt(10))
-                .append(new Random().nextInt(10));*/
         String carNumber = onePart + "-" + twoPart + "-" + threePart + "-" + fourPart;
         return carNumber;
     }
@@ -39,5 +29,13 @@ public class GenerateUtil {
                 .append(new Random().nextInt(10))
                 .append(new Random().nextInt(10));
         return plateNumStr.toString();
+    }
+
+    public static String multipleSpaces(int count) {
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = 0; i < count; i++) {
+            stringBuffer.append(" ");
+        }
+        return stringBuffer.toString();
     }
 }

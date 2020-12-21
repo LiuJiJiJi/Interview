@@ -1,5 +1,11 @@
-JAR_NAME="parkingLot.jar"
+JAR_NAME="parkingLot-jar-with-dependencies.jar"
 APP_DEPLOY_PATH="/home/liuji/Work/Interview/parkingLot/bin/"
+INPUTE_FILE_PATH=$APP_DEPLOY_PATH"file_inputs.txt"
 APP_DEPLOY_JAR_PATH=$APP_DEPLOY_PATH$JAR_NAME
 
-java -cp $APP_DEPLOY_JAR_PATH com.sunray.Start
+if [ x"$1" = x ]; then
+    echo "Pase add file param!"
+    exit 1
+fi
+
+java -cp $APP_DEPLOY_JAR_PATH com.sunray.Start inputFilePath=$INPUTE_FILE_PATH

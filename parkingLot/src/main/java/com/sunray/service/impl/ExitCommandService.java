@@ -37,7 +37,6 @@ public class ExitCommandService extends CommandService<List<ParkSlot>> {
         parkSlotRepository.deleteAll();
         List<ParkSlot> parkSlots = parkSlotRepository.getAll();
         Assert.assertEquals(0, parkSlots.size());
-        System.exit(1);
         return parkSlotRepository.getAll();
     }
 

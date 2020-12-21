@@ -4,6 +4,7 @@ import com.sunray.common.config.CommonBeanConfig;
 import com.sunray.common.constant.ColorEnum;
 import com.sunray.common.util.GenerateUtil;
 import com.sunray.entity.modal.ParkSlot;
+import org.junit.After;
 import org.junit.Test;
 
 import java.util.List;
@@ -14,6 +15,11 @@ import static org.junit.Assert.assertNotNull;
 public class ParkSlotRepositoryTest {
 
     private final ParkSlotRepository parkSlotRepository = CommonBeanConfig.parkSlotRepository;
+
+    @After
+    public void after() throws Exception{
+        parkSlotRepository.deleteAll();
+    }
 
     @Test
     public void searchTest() {
