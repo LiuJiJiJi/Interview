@@ -3,6 +3,7 @@ package com.sunray;
 import com.sunray.common.expection.SunrayException;
 import com.sunray.service.CommandService;
 import com.sunray.service.impl.CreateParkingLotCommandService;
+import com.sunray.service.impl.ExitCommandService;
 import com.sunray.service.impl.LeaveParkCommandService;
 import com.sunray.service.impl.ParkCommandService;
 import java.util.Map;
@@ -18,6 +19,7 @@ public class Start {
         commandServiceMap.put("create_parking_lot", new CreateParkingLotCommandService());
         commandServiceMap.put("park", new ParkCommandService());
         commandServiceMap.put("leave", new LeaveParkCommandService());
+        commandServiceMap.put("exit", new ExitCommandService());
 
         StringBuffer helpMessage = new StringBuffer();
         for (Map.Entry<String, CommandService> entry: commandServiceMap.entrySet()) {
@@ -45,7 +47,7 @@ public class Start {
 
                 try {
                     commandService.start(params);
-                } catch (SunrayException e) {
+                } catch (SunrayException | AssertionError e ) {
                     System.err.println(e.getMessage());
                 } catch (Exception e) {
                     System.err.println("Unknown Exception; Please contract developer to fix this issue!");
