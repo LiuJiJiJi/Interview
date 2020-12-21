@@ -57,10 +57,10 @@ public class LeaveParkCommandService extends CommandService<ParkHistory> {
         String slotNumber = params[1];
         ParkSlot parkSlot = parkSlotRepository.getBySlotNumber(slotNumber);
         if (parkSlot == null) {
-            throw new SunrayException("Not Found this park slot.");
+            throw new SunrayException("Not Found this parking slot.");
         }
         if (parkSlot.getCarNumber() == null) {
-            throw new SunrayException("This park slot no car.");
+            throw new SunrayException("This parking slot is no use.");
         }
 
         ParkHistory parkHistory = parkHistoryRepository.getLastHistoryByCarNumber(parkSlot.getCarNumber());
@@ -78,6 +78,11 @@ public class LeaveParkCommandService extends CommandService<ParkHistory> {
         parkSlot.setCarColor(null);
         parkSlot.setCarNumber(null);
         parkSlotRepository.update(parkSlot);
+
+
+        String message = "Slot number ${slotNumber} is free";
+        message = message.replace("${slotNumber}", parkSlot.getNumber());
+        System.out.println(message);
 
         return parkHistory;
     }
