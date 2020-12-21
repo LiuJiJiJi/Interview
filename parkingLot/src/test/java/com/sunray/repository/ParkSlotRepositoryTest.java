@@ -44,7 +44,7 @@ public class ParkSlotRepositoryTest {
     @Test
     public void createTest() {
         for (int i = 1; i < 7; i++) {
-            ParkSlot parkSlot = new ParkSlot(i + "", GenerateUtil.carNumber(), ColorEnum.WHITE.value);
+            ParkSlot parkSlot = new ParkSlot(i + "", GenerateUtil.singaporeCarnumber(), ColorEnum.WHITE.value);
             parkSlotRepository.create(parkSlot);
         }
 
@@ -55,7 +55,7 @@ public class ParkSlotRepositoryTest {
     @Test
     public void updateTest() {
         String slotNumber = "8";
-        String carNumber = GenerateUtil.carNumber();
+        String carNumber = GenerateUtil.singaporeCarnumber();
         String carColor = ColorEnum.RED.value;
 
         String newCarNumber = "KA-01-HH-9999";

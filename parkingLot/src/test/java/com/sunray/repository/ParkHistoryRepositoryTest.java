@@ -44,7 +44,7 @@ public class ParkHistoryRepositoryTest {
     @Test
     public void getTest() {
         String slotNumber = "1";
-        String carNumber = GenerateUtil.carNumber();
+        String carNumber = GenerateUtil.singaporeCarnumber();
         String carColor = ColorEnum.WHITE.value;
         ParkSlot parkSlot = new ParkSlot(slotNumber, carNumber, carColor);
 
@@ -68,7 +68,7 @@ public class ParkHistoryRepositoryTest {
     @Test
     public void createTest() {
         String slotNumber = "1";
-        String carNumber = GenerateUtil.carNumber();
+        String carNumber = GenerateUtil.singaporeCarnumber();
         String carColor = ColorEnum.WHITE.value;
         ParkSlot parkSlot = new ParkSlot(slotNumber, carNumber, carColor);
 
@@ -88,7 +88,7 @@ public class ParkHistoryRepositoryTest {
     @Test
     public void updateTest() throws Exception{
         String slotNumber = "3";
-        String carNumber = GenerateUtil.carNumber();
+        String carNumber = GenerateUtil.singaporeCarnumber();
         String carColor = ColorEnum.WHITE.value;
         ParkSlot parkSlot = new ParkSlot(slotNumber, carNumber, carColor);
 
