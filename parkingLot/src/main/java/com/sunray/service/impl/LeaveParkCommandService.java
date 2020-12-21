@@ -1,7 +1,7 @@
 package com.sunray.service.impl;
 
+import com.sunray.common.config.CommonBeanConfig;
 import com.sunray.common.constant.CommonConstant;
-import com.sunray.common.constant.DBConstant;
 import com.sunray.common.expection.SunrayException;
 import com.sunray.common.expection.ValidationException;
 import com.sunray.common.util.ValidationUtil;
@@ -9,8 +9,6 @@ import com.sunray.entity.modal.ParkHistory;
 import com.sunray.entity.modal.ParkSlot;
 import com.sunray.repository.ParkHistoryRepository;
 import com.sunray.repository.ParkSlotRepository;
-import com.sunray.repository.redis.RedisParkHistoryRepository;
-import com.sunray.repository.redis.RedisParkSlotRepository;
 import com.sunray.service.CommandService;
 
 import java.util.Arrays;
@@ -18,20 +16,9 @@ import java.util.Date;
 
 public class LeaveParkCommandService extends CommandService<ParkHistory> {
 
-    private ParkSlotRepository parkSlotRepository;
-    private ParkHistoryRepository parkHistoryRepository;
-    {
-        switch (DBConstant.DB_TYPE) {
-            case REDIS:
-                parkSlotRepository = new RedisParkSlotRepository();
-                parkHistoryRepository = new RedisParkHistoryRepository();
-                break;
-            default:
-                parkSlotRepository = new RedisParkSlotRepository();
-                parkHistoryRepository = new RedisParkHistoryRepository();
-                break;
-        }
-    }
+    private final ParkSlotRepository parkSlotRepository = CommonBeanConfig.parkSlotRepository;
+    private final ParkHistoryRepository parkHistoryRepository = CommonBeanConfig.parkHistoryRepository;
+
 
     private final String[] paramsTemplate = {"leave", "2"};
     private final String paramsTemplateString = String.join(" ", Arrays.asList(paramsTemplate));

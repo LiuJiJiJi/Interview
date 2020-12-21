@@ -5,9 +5,7 @@ import com.sunray.common.expection.NoParkSlotException;
 import com.sunray.common.util.GenerateUtil;
 import com.sunray.entity.modal.ParkHistory;
 import com.sunray.entity.modal.ParkSlot;
-import com.sunray.service.impl.CreateParkingLotCommandService;
-import com.sunray.service.impl.LeaveParkCommandService;
-import com.sunray.service.impl.ParkCommandService;
+import com.sunray.service.impl.*;
 import org.junit.Test;
 
 import java.util.List;
@@ -19,6 +17,11 @@ public class CommandServiceTest {
     private ParkCommandService parkCommandService = new ParkCommandService();
     private CreateParkingLotCommandService createParkingLotCommandService = new CreateParkingLotCommandService();
     private LeaveParkCommandService leaveParkCommandService = new LeaveParkCommandService();
+    private StatusCommandService statusCommandService = new StatusCommandService();
+    private ExitCommandService exitCommandService = new ExitCommandService();
+    private ResigtrationNumbersForCarsWithColourCommandService resigtrationNumbersForCarsWithColourCommandService = new ResigtrationNumbersForCarsWithColourCommandService();
+    private SlotNumbersForCarsWithColourCommandService slotNumbersForCarsWithColourCommandService = new SlotNumbersForCarsWithColourCommandService();
+    private SlotNumberForRegistrationNumberCommandService slotNumberForRegistrationNumberCommandService = new SlotNumberForRegistrationNumberCommandService();
 
     @Test
     public void CreateParkingLotTest() throws Exception{
@@ -72,6 +75,14 @@ public class CommandServiceTest {
         assertNotNull(parkHistory.getFinalCost());
     }
 
+    @Test
+    public void exitCommandTest() throws Exception{
+        String firstParam = "exit";
+        String[] params = {firstParam};
+        exitCommandService.start(params);
+
+
+    }
 
 
 }

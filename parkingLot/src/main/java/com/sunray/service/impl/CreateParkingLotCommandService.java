@@ -1,11 +1,10 @@
 package com.sunray.service.impl;
 
-import com.sunray.common.constant.DBConstant;
+import com.sunray.common.config.CommonBeanConfig;
 import com.sunray.common.expection.ValidationException;
 import com.sunray.common.util.ValidationUtil;
 import com.sunray.entity.modal.ParkSlot;
 import com.sunray.repository.ParkSlotRepository;
-import com.sunray.repository.redis.RedisParkSlotRepository;
 import com.sunray.service.CommandService;
 
 import java.util.Arrays;
@@ -13,17 +12,7 @@ import java.util.List;
 
 public class CreateParkingLotCommandService extends CommandService<List<ParkSlot>> {
 
-    private ParkSlotRepository parkSlotRepository;
-    {
-        switch (DBConstant.DB_TYPE) {
-            case REDIS:
-                parkSlotRepository = new RedisParkSlotRepository();
-                break;
-            default:
-                parkSlotRepository = new RedisParkSlotRepository();
-                break;
-        }
-    }
+    private final ParkSlotRepository parkSlotRepository = CommonBeanConfig.parkSlotRepository;
 
     private final String[] paramsTemplate = {"create_parking_lot", "6"};
     private final String paramsTemplateString = String.join(" ", Arrays.asList(paramsTemplate));

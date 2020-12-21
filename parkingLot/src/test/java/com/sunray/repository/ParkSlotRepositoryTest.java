@@ -1,33 +1,19 @@
 package com.sunray.repository;
 
+import com.sunray.common.config.CommonBeanConfig;
 import com.sunray.common.constant.ColorEnum;
-import com.sunray.common.constant.DBConstant;
 import com.sunray.common.util.GenerateUtil;
 import com.sunray.entity.modal.ParkSlot;
-import com.sunray.repository.redis.RedisParkSlotRepository;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class ParkSlotRepositoryTest {
 
-    private ParkSlotRepository parkSlotRepository;
-
-    @Before
-    public void before() {
-        switch (DBConstant.DB_TYPE) {
-            case REDIS:
-                parkSlotRepository = new RedisParkSlotRepository();
-                break;
-            default:
-                parkSlotRepository = new RedisParkSlotRepository();
-                break;
-        }
-
-    }
+    private final ParkSlotRepository parkSlotRepository = CommonBeanConfig.parkSlotRepository;
 
     @Test
     public void searchTest() {

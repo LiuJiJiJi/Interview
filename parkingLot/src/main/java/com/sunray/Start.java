@@ -3,6 +3,7 @@ package com.sunray;
 import com.sunray.common.expection.SunrayException;
 import com.sunray.service.CommandService;
 import com.sunray.service.impl.*;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.Map;
 import java.util.Scanner;
@@ -11,7 +12,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Start {
 
     public static void main(String[] args) {
-        System.out.println("=====================Parking Lot Start=====================");
+        System.out.println("██████╗  █████╗ ██████╗ ██╗  ██╗██╗███╗   ██╗ ██████╗     ██╗      ██████╗ ████████╗");
+        System.out.println("██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝██║████╗  ██║██╔════╝     ██║     ██╔═══██╗╚══██╔══╝");
+        System.out.println("██████╔╝███████║██████╔╝█████╔╝ ██║██╔██╗ ██║██║  ███╗    ██║     ██║   ██║   ██║   ");
+        System.out.println("██╔═══╝ ██╔══██║██╔══██╗██╔═██╗ ██║██║╚██╗██║██║   ██║    ██║     ██║   ██║   ██║   ");
+        System.out.println("██║     ██║  ██║██║  ██║██║  ██╗██║██║ ╚████║╚██████╔╝    ███████╗╚██████╔╝   ██║   ");
+        System.out.println("╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝     ╚══════╝ ╚═════╝    ╚═╝   ");
 
         Map<String, CommandService> commandServiceMap = new ConcurrentHashMap<>();
         commandServiceMap.put("create_parking_lot", new CreateParkingLotCommandService());
@@ -25,12 +31,16 @@ public class Start {
 
         StringBuffer helpMessage = new StringBuffer();
         for (Map.Entry<String, CommandService> entry: commandServiceMap.entrySet()) {
+
             helpMessage.append("\t")
                     .append(entry.getKey())
-                    .append(": \t")
+                    .append(": ")
+                    .append(RandomStringUtils.random(60 - entry.getKey().length(), " "))
                     .append(entry.getValue().getParamsTemplateString())
                     .append("\n");
         }
+
+        System.out.println(helpMessage);
 
         Scanner input = new Scanner(System.in);
         while (input.hasNext()) {

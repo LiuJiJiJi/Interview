@@ -1,12 +1,10 @@
 package com.sunray.repository;
 
+import com.sunray.common.config.CommonBeanConfig;
 import com.sunray.common.constant.ColorEnum;
-import com.sunray.common.constant.DBConstant;
 import com.sunray.common.util.GenerateUtil;
 import com.sunray.entity.modal.ParkHistory;
 import com.sunray.entity.modal.ParkSlot;
-import com.sunray.repository.redis.RedisParkHistoryRepository;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Date;
@@ -16,24 +14,7 @@ import static org.junit.Assert.*;
 
 public class ParkHistoryRepositoryTest {
 
-    private ParkHistoryRepository parkHistoryRepository;
-
-    @Before
-    public void before() {
-        switch (DBConstant.DB_TYPE) {
-            case REDIS:
-                parkHistoryRepository = new RedisParkHistoryRepository();
-                break;
-            case MYSQL:
-                break;
-            case MONGODB:
-                break;
-            default:
-                parkHistoryRepository = new RedisParkHistoryRepository();
-                break;
-        }
-
-    }
+    private final ParkHistoryRepository parkHistoryRepository = CommonBeanConfig.parkHistoryRepository;
 
     @Test
     public void getAllTest() {
