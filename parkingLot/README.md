@@ -18,5 +18,5 @@
 + status : status                                                                                          [status: finished]
 + exit : exit                                                                                              [status: finished]
 + registration_numbers_for_cars_with_colour: registration_numbers_for_cars_with_colour White               [status: finished]
-+ slot_numbers_for_cars_with_colour
-+ slot_number_for_registration_number
++ slot_numbers_for_cars_with_colour: slot_numbers_for_cars_with_colour White                               [status: finished]
++ slot_number_for_registration_number: slot_number_for_registration_number park KA-01-HH-9999              [status: finished]

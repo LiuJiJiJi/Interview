@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ResigtrationNumbersForCarsWithColourCommandService extends CommandService<List<ParkSlot>> {
+public class SlotNumbersForCarsWithColourCommandService extends CommandService<List<ParkSlot>> {
 
     private ParkSlotRepository parkSlotRepository;
     private ParkHistoryRepository parkHistoryRepository;
@@ -31,7 +31,7 @@ public class ResigtrationNumbersForCarsWithColourCommandService extends CommandS
         }
     }
 
-    private final String[] paramsTemplate = {"registration_numbers_for_cars_with_colour", ColorEnum.WHITE.value};
+    private final String[] paramsTemplate = {"slot_numbers_for_cars_with_colour", ColorEnum.WHITE.value};
     private final String paramsTemplateString = String.join(" ", Arrays.asList(paramsTemplate));
     private final String tipMessageTemplate = "\nCommand '${paramsString}' is invalid \nTry: ${paramsTemplateString} \n";
 
@@ -58,7 +58,7 @@ public class ResigtrationNumbersForCarsWithColourCommandService extends CommandS
             System.out.println("Not found \"" + carColor + "\" color car car parking in slot.");
         }
 
-        String carNumbers = parkSlots.stream().map(ParkSlot::getCarNumber).collect(Collectors.joining(", "));
+        String carNumbers = parkSlots.stream().map(ParkSlot::getNumber).collect(Collectors.joining(", "));
         System.out.println(carNumbers);
 
         return parkSlots;

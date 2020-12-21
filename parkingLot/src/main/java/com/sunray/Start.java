@@ -20,6 +20,7 @@ public class Start {
         commandServiceMap.put("status", new StatusCommandService());
         commandServiceMap.put("exit", new ExitCommandService());
         commandServiceMap.put("registration_numbers_for_cars_with_colour", new ResigtrationNumbersForCarsWithColourCommandService());
+        commandServiceMap.put("slot_numbers_for_cars_with_colour", new SlotNumbersForCarsWithColourCommandService());
 
         StringBuffer helpMessage = new StringBuffer();
         for (Map.Entry<String, CommandService> entry: commandServiceMap.entrySet()) {
