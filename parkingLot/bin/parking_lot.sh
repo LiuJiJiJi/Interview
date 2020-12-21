@@ -7,4 +7,4 @@ if [ x"$1" = x ]; then
     exit 1
 fi
 
-java -cp $APP_DEPLOY_JAR_PATH com.sunray.Start inputFilePath=$
+java -cp $APP_DEPLOY_JAR_PATH com.sunray.Start inputFilePath=$1
