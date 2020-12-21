@@ -4,7 +4,7 @@ Show interview demo programmer.
 
 ## Command list
 
-+ create_parking_lot
++ create_parking_lot: 6
 + park : park KA-01-HH-9999 White
 + leave
 + status

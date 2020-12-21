@@ -5,6 +5,10 @@ import javax.validation.constraints.NotNull;
 public class ParkSlot {
 
     /**
+     * @Description: number rule： 1, 2, 3, 4 ,5 ,6 .....
+     */
+    private Long id;
+    /**
      * @Description: number rule：
      *   rule one: 1, 2, 3, 4 ,5 ,6 .....
      *   rule two: 1A, 1B, 2A, 2B, 3A, 3B .....
@@ -27,6 +31,14 @@ public class ParkSlot {
         this.number = number;
         this.carNumber = carNumber;
         this.carColor = carColor;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNumber() {

@@ -5,13 +5,13 @@ package com.sunray.service;
  * @date 2020-12-18 16:42
  * @description command service
  */
-public abstract class CommandService {
+public abstract class CommandService<T> {
    public abstract void validate(String[] params) throws Exception;
-   public abstract void run(String[] params) throws Exception;
+   public abstract T run(String[] params) throws Exception;
    public abstract String getParamsTemplateString();
 
-   public void start(String[] params) throws Exception{
+   public T start(String[] params) throws Exception{
       this.validate(params);
-      this.run(params);
+      return this.run(params);
    }
 }

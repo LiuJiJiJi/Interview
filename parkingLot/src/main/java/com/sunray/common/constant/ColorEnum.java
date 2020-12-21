@@ -13,4 +13,15 @@ public enum ColorEnum {
     ColorEnum(String value) {
         this.value = value;
     }
+
+
+
+    public static ColorEnum getEnumByValue(String value) {
+        try {
+            value = value.toUpperCase();
+            return ColorEnum.valueOf(value);
+        } catch (IllegalArgumentException e) {
+            return ColorEnum.Unknown;
+        }
+    }
 }

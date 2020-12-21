@@ -6,6 +6,7 @@ import com.sunray.common.util.JedisUtil;
 import com.sunray.entity.modal.ParkSlot;
 import com.sunray.repository.ParkSlotRepository;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -13,6 +14,13 @@ import java.util.stream.Collectors;
 public class RedisParkSlotRepository implements ParkSlotRepository {
 
     private final String redisKey = CacheKey.PARK_SLOT_KEY;
+
+    @Override
+    public List<ParkSlot> getFreeSlot() {
+        List<ParkSlot> allParkSlots = getAll();
+        List<ParkSlot> parkSlots = allParkSlots.stream().filter(x -> x.getCarNumber() == null).collect(Collectors.toList());
+        return parkSlots;
+    }
 
     @Override
     public ParkSlot getBySlotNumber(String slotNumber) {
@@ -25,7 +33,7 @@ public class RedisParkSlotRepository implements ParkSlotRepository {
     public List<ParkSlot> getAll() {
         Map<String, String> parkSlotMap = JedisUtil.hgetAll(redisKey);
         List<ParkSlot> parkSlots = parkSlotMap.values().stream().map((x) -> JSON.parseObject(x, ParkSlot.class)).collect(Collectors.toList());
-        parkSlots.sort((a, b) -> b.getNumber().compareTo(a.getNumber()));
+        parkSlots.sort(Comparator.comparing(ParkSlot::getId));
         return parkSlots;
     }
 
@@ -45,6 +53,11 @@ public class RedisParkSlotRepository implements ParkSlotRepository {
     @Override
     public void deleteBySlotNumber(String slotNumber) {
         JedisUtil.hdel(redisKey, slotNumber);
+    }
+
+    @Override
+    public void deleteAll() {
+        JedisUtil.delete(redisKey);
     }
 
 }

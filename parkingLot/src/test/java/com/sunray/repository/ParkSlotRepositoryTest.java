@@ -22,10 +22,6 @@ public class ParkSlotRepositoryTest {
             case REDIS:
                 parkSlotRepository = new RedisParkSlotRepository();
                 break;
-            case MYSQL:
-                break;
-            case MONGODB:
-                break;
             default:
                 parkSlotRepository = new RedisParkSlotRepository();
                 break;
