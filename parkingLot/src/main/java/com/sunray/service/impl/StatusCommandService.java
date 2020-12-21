@@ -1,11 +1,7 @@
 package com.sunray.service.impl;
 
-import com.sunray.common.constant.ColorEnum;
 import com.sunray.common.constant.DBConstant;
-import com.sunray.common.expection.NoParkSlotException;
-import com.sunray.common.expection.SunrayException;
 import com.sunray.common.expection.ValidationException;
-import com.sunray.entity.modal.ParkHistory;
 import com.sunray.entity.modal.ParkSlot;
 import com.sunray.repository.ParkHistoryRepository;
 import com.sunray.repository.ParkSlotRepository;
@@ -14,10 +10,10 @@ import com.sunray.repository.redis.RedisParkSlotRepository;
 import com.sunray.service.CommandService;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class ParkCommandService extends CommandService<ParkSlot> {
+public class StatusCommandService extends CommandService<List<ParkSlot>> {
 
     private ParkSlotRepository parkSlotRepository;
     private ParkHistoryRepository parkHistoryRepository;
@@ -34,7 +30,7 @@ public class ParkCommandService extends CommandService<ParkSlot> {
         }
     }
 
-    private final String[] paramsTemplate = {"park", "AA-00-AA-0001",  "White"};
+    private final String[] paramsTemplate = {"status"};
     private final String paramsTemplateString = String.join(" ", Arrays.asList(paramsTemplate));
     private final String tipMessageTemplate = "\nCommand '${paramsString}' is invalid \nTry: ${paramsTemplateString} \n";
 
@@ -44,44 +40,29 @@ public class ParkCommandService extends CommandService<ParkSlot> {
         String paramsString = String.join(" ", Arrays.asList(params));
         String tipMessage = tipMessageTemplate.replace("${paramsString}", paramsString).replace("${paramsTemplateString}", paramsTemplateString);
 
-        if (params.length != 3) {
+        if (params.length != 1) {
             throw new ValidationException(tipMessage);
-        }
-
-        String carNumber = params[1];
-        ParkSlot parkSlot = parkSlotRepository.getByCarNumber(carNumber);
-        if (parkSlot != null) {
-            throw new SunrayException("Your car has parking on slot number: " + parkSlot.getNumber());
         }
 
     }
 
     @Override
-    public ParkSlot run(String[] params) throws Exception{
-        String carNumber = params[1];
-        ColorEnum colorEnum = ColorEnum.getEnumByValue(params[2]);
-        List<ParkSlot> freeSlot = parkSlotRepository.getFreeSlot();
-        if (freeSlot.size() < 1) {
-            throw new NoParkSlotException("No parking space available.");
+    public List<ParkSlot> run(String[] params) throws Exception{
+        List<ParkSlot> parkSlots = parkSlotRepository.getAll();
+        parkSlots = parkSlots.stream().filter(x -> x.getCarNumber() != null).collect(Collectors.toList());
+
+        String message = "park ${carNumber} ${carColor}";
+        if (parkSlots.size() == 0) {
+            System.out.println("No car is parking in slot.");
         }
+        parkSlots.forEach(x -> {
+            String pintMessage = message
+                    .replace("${carNumber}", x.getCarNumber())
+                    .replace("${carColor}", x.getCarColor());
+            System.out.println(pintMessage);
+        });
 
-        ParkSlot parkSlot = freeSlot.get(0);
-        parkSlot.setCarNumber(carNumber);
-        parkSlot.setCarColor(colorEnum.value);
-        parkSlot = parkSlotRepository.create(parkSlot);
-
-        ParkHistory parkHistory = new ParkHistory();
-        parkHistory.setCarColor(parkSlot.getCarColor());
-        parkHistory.setSlotNumber(parkSlot.getNumber());
-        parkHistory.setCarNuber(parkSlot.getCarNumber());
-        parkHistory.setEnterTime(new Date());
-        parkHistory = parkHistoryRepository.create(parkHistory);
-
-        String message = "Allocated slot number: ${slotNumber}";
-        message = message.replace(" ${slotNumber}", parkSlot.getNumber());
-        System.out.println(message);
-
-        return parkSlot;
+        return parkSlots;
     }
 
     @Override
