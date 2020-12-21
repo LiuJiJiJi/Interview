@@ -2,11 +2,11 @@ package com.sunray.common.constant;
 
 public enum ColorEnum {
 
-    WHITE("white"),
-    RED("red"),
-    purple("purple"),
-    BLACK("black"),
-    Unknown("unknown");
+    WHITE("White"),
+    RED("Red"),
+    purple("Purple"),
+    BLACK("Black"),
+    Unknown("Unknown");
 
     public String value;
 
