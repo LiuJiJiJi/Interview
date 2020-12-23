@@ -29,3 +29,15 @@
 4. **sh /xxxx/parkingLot/bin/setup.sh**
 5. **sh /xxxx/parkingLot/bin/parking_lot.sh  /xxxx/parkingLot/bin/file_inputs.txt**
 > ps: "/xxxx" is the root path of the project
+
+### How to improve? 
+
+#### How to improve(Code Architecture)
++ System Log: Add logback config.
++ Deploy to cloud: Support multiple parking lots; One service to multiple parking lots.
++ Long link/Socket: Can get real-time status about parking lot.
++ Dashboard: Support Operation-staff/Security-guard manage his parking lot.
+
+#### How to improve(Product)t device:
+
++ Can research the similar project;: ETC, [科拓](http://keytop.com.cn/), [捷顺](https://www.jieshun.cn/).
