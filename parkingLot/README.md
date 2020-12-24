@@ -33,11 +33,11 @@
 ### How to improve? 
 
 #### How to improve(Code Architecture)
-+ System Log: Add logback config.
++ Use SpringBoot Framework:  bean, orm(use mysql as db, use jpa as orm), log(logback),
 + Deploy to cloud: Support multiple parking lots; One service to multiple parking lots.
-+ Long link/Socket: Can get real-time status about parking lot.
++ Long link/Socket: Can get real-time
+status about parking lot.
 + Dashboard: Support Operation-staff/Security-guard manage his parking lot.
 
 #### How to improve(Product)t device:
-
-+ Can research the similar project;: ETC, [科拓](http://keytop.com.cn/), [捷顺](https://www.jieshun.cn/).
++ Can research the similar project; ETC, [科拓](http://keytop.com.cn/), [捷顺](https://www.jieshun.cn/).
