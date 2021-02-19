@@ -12,6 +12,7 @@
 
     <modules>
         <module>parkingLot</module>
+        <module>liuji</module>
     </modules>
 
 </project>
