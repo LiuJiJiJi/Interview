@@ -11,9 +11,9 @@ public class DBConstant {
     public final static int REDIS_PORT = 6380;
     public final static int REDIS_DB = 0;
 
-    public final static int REDIS_MAX_TOTAL= 1000;
-    public final static int REDIS_MAX_IDLE= 20;
-    public final static int REDIS_MAX_WAIT_MILLIS= 6000;
+    public final static int REDIS_MAX_TOTAL = 1000;
+    public final static int REDIS_MAX_IDLE = 20;
+    public final static int REDIS_MAX_WAIT_MILLIS = 6000;
 
 
     // ==============================Mysql================================

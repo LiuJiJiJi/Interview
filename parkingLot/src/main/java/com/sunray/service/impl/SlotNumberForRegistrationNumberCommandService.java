@@ -20,7 +20,7 @@ public class SlotNumberForRegistrationNumberCommandService extends CommandServic
 
 
     @Override
-    public void validate(String[] params) throws Exception{
+    public void validate(String[] params) throws Exception {
         String paramsString = String.join(" ", Arrays.asList(params));
         String tipMessage = tipMessageTemplate.replace("${paramsString}", paramsString).replace("${paramsTemplateString}", paramsTemplateString);
 
@@ -31,7 +31,7 @@ public class SlotNumberForRegistrationNumberCommandService extends CommandServic
     }
 
     @Override
-    public ParkSlot run(String[] params) throws Exception{
+    public ParkSlot run(String[] params) throws Exception {
         String carNumber = params[1];
         ParkSlot parkSlot = parkSlotRepository.getByCarNumber(carNumber);
         if (parkSlot == null) {

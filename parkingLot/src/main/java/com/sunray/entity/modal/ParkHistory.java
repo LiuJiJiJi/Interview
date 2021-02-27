@@ -15,9 +15,9 @@ public class ParkHistory {
     private Double cost;
     private Double discount;
     private Double finalCost;
-    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date enterTime;
-    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date leaveTime;
     private Long parkSecond;
 

@@ -17,7 +17,7 @@ public class ParkSlotRepositoryTest {
     private final ParkSlotRepository parkSlotRepository = CommonBeanConfig.parkSlotRepository;
 
     @After
-    public void after() throws Exception{
+    public void after() throws Exception {
         parkSlotRepository.deleteAll();
     }
 
@@ -49,9 +49,10 @@ public class ParkSlotRepositoryTest {
         String carColor = ColorEnum.RED.value;
 
         String newCarNumber = "KA-01-HH-9999";
-        String newColor = ColorEnum.purple.value;;
+        String newColor = ColorEnum.purple.value;
+        ;
 
-        ParkSlot parkSlot = new ParkSlot( slotNumber, carNumber, carColor);
+        ParkSlot parkSlot = new ParkSlot(slotNumber, carNumber, carColor);
         parkSlotRepository.create(parkSlot);
 
         parkSlot.setCarNumber(newCarNumber);

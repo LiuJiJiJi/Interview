@@ -22,7 +22,7 @@ public class StatusCommandService extends CommandService<List<ParkSlot>> {
 
 
     @Override
-    public void validate(String[] params) throws Exception{
+    public void validate(String[] params) throws Exception {
         String paramsString = String.join(" ", Arrays.asList(params));
         String tipMessage = tipMessageTemplate.replace("${paramsString}", paramsString).replace("${paramsTemplateString}", paramsTemplateString);
 
@@ -33,7 +33,7 @@ public class StatusCommandService extends CommandService<List<ParkSlot>> {
     }
 
     @Override
-    public List<ParkSlot> run(String[] params) throws Exception{
+    public List<ParkSlot> run(String[] params) throws Exception {
         List<ParkSlot> parkSlots = parkSlotRepository.getAll();
         parkSlots = parkSlots.stream().filter(x -> x.getCarNumber() != null).collect(Collectors.toList());
 

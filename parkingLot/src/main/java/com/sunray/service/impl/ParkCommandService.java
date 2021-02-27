@@ -21,13 +21,13 @@ public class ParkCommandService extends CommandService<ParkSlot> {
     private final ParkHistoryRepository parkHistoryRepository = CommonBeanConfig.parkHistoryRepository;
 
 
-    private final String[] paramsTemplate = {"park", "AA-00-AA-0001",  "White"};
+    private final String[] paramsTemplate = {"park", "AA-00-AA-0001", "White"};
     private final String paramsTemplateString = String.join(" ", Arrays.asList(paramsTemplate));
     private final String tipMessageTemplate = "\nCommand '${paramsString}' is invalid \nTry: ${paramsTemplateString} \n";
 
 
     @Override
-    public void validate(String[] params) throws Exception{
+    public void validate(String[] params) throws Exception {
         String paramsString = String.join(" ", Arrays.asList(params));
         String tipMessage = tipMessageTemplate.replace("${paramsString}", paramsString).replace("${paramsTemplateString}", paramsTemplateString);
 
@@ -44,7 +44,7 @@ public class ParkCommandService extends CommandService<ParkSlot> {
     }
 
     @Override
-    public ParkSlot run(String[] params) throws Exception{
+    public ParkSlot run(String[] params) throws Exception {
         String carNumber = params[1];
         ColorEnum colorEnum = ColorEnum.getEnumByValue(params[2]);
         List<ParkSlot> freeSlot = parkSlotRepository.getFreeSlot();

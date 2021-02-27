@@ -26,7 +26,7 @@ public class LeaveParkCommandService extends CommandService<ParkHistory> {
 
 
     @Override
-    public void validate(String[] params) throws Exception{
+    public void validate(String[] params) throws Exception {
         String paramsString = String.join(" ", Arrays.asList(params));
         String tipMessage = tipMessageTemplate.replace("${paramsString}", paramsString).replace("${paramsTemplateString}", paramsTemplateString);
 
@@ -40,7 +40,7 @@ public class LeaveParkCommandService extends CommandService<ParkHistory> {
     }
 
     @Override
-    public ParkHistory run(String[] params){
+    public ParkHistory run(String[] params) {
         String slotNumber = params[1];
         ParkSlot parkSlot = parkSlotRepository.getBySlotNumber(slotNumber);
         if (parkSlot == null) {
@@ -58,7 +58,7 @@ public class LeaveParkCommandService extends CommandService<ParkHistory> {
         parkHistory.setCost(CommonConstant.PARK_PRICE);
         parkHistory.setDiscount(0.0);
         parkHistory.setFinalCost(parkHistory.getCost() - parkHistory.getDiscount());
-        Long parkSecond = (parkHistory.getLeaveTime().getTime() - parkHistory.getEnterTime().getTime())/1000;
+        Long parkSecond = (parkHistory.getLeaveTime().getTime() - parkHistory.getEnterTime().getTime()) / 1000;
         parkHistory.setParkSecond(parkSecond);
         parkHistoryRepository.update(parkHistory);
 

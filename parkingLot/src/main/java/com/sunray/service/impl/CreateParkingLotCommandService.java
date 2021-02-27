@@ -20,7 +20,7 @@ public class CreateParkingLotCommandService extends CommandService<List<ParkSlot
 
 
     @Override
-    public void validate(String[] params) throws Exception{
+    public void validate(String[] params) throws Exception {
         String paramsString = String.join(" ", Arrays.asList(params));
         String tipMessage = tipMessageTemplate.replace("${paramsString}", paramsString).replace("${paramsTemplateString}", paramsTemplateString);
 
@@ -34,13 +34,13 @@ public class CreateParkingLotCommandService extends CommandService<List<ParkSlot
     }
 
     @Override
-    public List<ParkSlot> run(String[] params) throws Exception{
+    public List<ParkSlot> run(String[] params) throws Exception {
         parkSlotRepository.deleteAll();
         Long number = Long.valueOf(params[1]);
-        for (long i = 1; i < number+1; i++) {
+        for (long i = 1; i < number + 1; i++) {
             ParkSlot parkSlot = new ParkSlot();
             parkSlot.setId(i);
-            parkSlot.setNumber(i+"");
+            parkSlot.setNumber(i + "");
             parkSlotRepository.create(parkSlot);
         }
         List<ParkSlot> parkSlots = parkSlotRepository.getAll();

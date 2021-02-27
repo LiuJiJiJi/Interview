@@ -14,12 +14,13 @@ import java.util.Map;
 public class JedisUtil {
 
     private static final JedisPool jedisPool;
+
     static {
         jedisPool = newJedisPool();
     }
 
     public static Jedis getJedis() {
-        Jedis jedis= jedisPool.getResource();
+        Jedis jedis = jedisPool.getResource();
         jedis.auth(DBConstant.REDIS_PASSWORD);
         jedis.select(DBConstant.REDIS_DB);
         return jedis;
@@ -50,12 +51,12 @@ public class JedisUtil {
         return jedis.del(key);
     }
 
-    public static long lpush(String queueName, String...strings) {
+    public static long lpush(String queueName, String... strings) {
         Jedis jedis = JedisUtil.getJedis();
         return jedis.lpush(queueName, strings);
     }
 
-    public static long rpush(String queueName, String...strings) {
+    public static long rpush(String queueName, String... strings) {
         Jedis jedis = JedisUtil.getJedis();
         return jedis.rpush(queueName, strings);
     }
@@ -95,13 +96,12 @@ public class JedisUtil {
         List<String> list = new LinkedList<String>();
         for (int i = 0; i < count; i++) {
             String value = jedis.lpop(queueName);
-            if (!StringUtils.isEmpty(value)){
+            if (!StringUtils.isEmpty(value)) {
                 list.add(value);
             }
         }
         return list;
     }
-
 
 
     public static void main(String[] args) {

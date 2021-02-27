@@ -6,12 +6,14 @@ package com.sunray.service;
  * @description command service
  */
 public abstract class CommandService<T> {
-   public abstract void validate(String[] params) throws Exception;
-   public abstract T run(String[] params) throws Exception;
-   public abstract String getParamsTemplateString();
+    public abstract void validate(String[] params) throws Exception;
 
-   public T start(String[] params) throws Exception{
-      this.validate(params);
-      return this.run(params);
-   }
+    public abstract T run(String[] params) throws Exception;
+
+    public abstract String getParamsTemplateString();
+
+    public T start(String[] params) throws Exception {
+        this.validate(params);
+        return this.run(params);
+    }
 }

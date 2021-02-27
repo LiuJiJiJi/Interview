@@ -10,6 +10,7 @@ public class CommonBeanConfig {
 
     public static ParkSlotRepository parkSlotRepository;
     public static ParkHistoryRepository parkHistoryRepository;
+
     static {
         switch (DBConstant.DB_TYPE) {
             case MYSQL:

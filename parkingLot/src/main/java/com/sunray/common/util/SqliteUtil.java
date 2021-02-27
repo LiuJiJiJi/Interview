@@ -9,6 +9,7 @@ import java.sql.SQLException;
 public class SqliteUtil {
 
     private static Connection connection;
+
     static {
         try {
             Class.forName(DBConstant.MYSQL_DRIVER_CLASS);

@@ -30,22 +30,22 @@ public class CommandServiceTest {
     private SlotNumberForRegistrationNumberCommandService slotNumberForRegistrationNumberCommandService = new SlotNumberForRegistrationNumberCommandService();
 
     @Before
-    public void before() throws Exception{
+    public void before() throws Exception {
         createParkingLotCommand(6L);
     }
 
     @After
-    public void after() throws Exception{
+    public void after() throws Exception {
         exitCommand();
     }
 
     @Test
-    public void parkCommandTest() throws Exception{
+    public void parkCommandTest() throws Exception {
         parkCommand();
     }
 
     @Test
-    public void leaveParkCommandTest() throws Exception{
+    public void leaveParkCommandTest() throws Exception {
         ParkSlot parkSlot = parkCommand();
         if (parkSlot == null) {
             System.out.println("Park Failed; no park slot");
@@ -129,16 +129,16 @@ public class CommandServiceTest {
 
     }
 
-    public void createParkingLotCommand(long number) throws Exception{
+    public void createParkingLotCommand(long number) throws Exception {
         String firstParam = "create_parking_lot";
-        String[] params = {firstParam, number+ ""};
+        String[] params = {firstParam, number + ""};
         List<ParkSlot> parkSlots = createParkingLotCommandService.start(params);
 
         assertNotNull(parkSlots);
         assertEquals(number, parkSlots.size());
     }
 
-    public void exitCommand() throws Exception{
+    public void exitCommand() throws Exception {
         String firstParam = "exit";
         String[] params = {firstParam};
         exitCommandService.start(params);
@@ -147,7 +147,7 @@ public class CommandServiceTest {
         assertEquals(0, parkSlots.size());
     }
 
-    public ParkSlot parkCommand(){
+    public ParkSlot parkCommand() {
         String firstParam = "park";
         String carnumber = GenerateUtil.singaporeCarnumber();
         String color = ColorEnum.BLACK.value;

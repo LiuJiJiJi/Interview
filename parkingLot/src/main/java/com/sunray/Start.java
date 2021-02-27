@@ -39,7 +39,7 @@ public class Start {
         commandServiceMap.put("slot_number_for_registration_number", new SlotNumberForRegistrationNumberCommandService());
 
         StringBuffer helpMessageSB = new StringBuffer();
-        for (Map.Entry<String, CommandService> entry: commandServiceMap.entrySet()) {
+        for (Map.Entry<String, CommandService> entry : commandServiceMap.entrySet()) {
 
             helpMessageSB.append("\t")
                     .append(entry.getKey())
@@ -123,7 +123,7 @@ public class Start {
             if ("exit".equals(firstParam)) {
                 System.exit(1);
             }
-        } catch (SunrayException | AssertionError e ) {
+        } catch (SunrayException | AssertionError e) {
             System.err.println(e.getMessage());
         } catch (Exception e) {
             System.err.println("Unknown Exception; Please contract developer to fix this issue!");

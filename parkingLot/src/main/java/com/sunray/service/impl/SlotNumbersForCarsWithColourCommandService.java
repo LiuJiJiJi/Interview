@@ -23,7 +23,7 @@ public class SlotNumbersForCarsWithColourCommandService extends CommandService<L
 
 
     @Override
-    public void validate(String[] params) throws Exception{
+    public void validate(String[] params) throws Exception {
         String paramsString = String.join(" ", Arrays.asList(params));
         String tipMessage = tipMessageTemplate.replace("${paramsString}", paramsString).replace("${paramsTemplateString}", paramsTemplateString);
 
@@ -34,7 +34,7 @@ public class SlotNumbersForCarsWithColourCommandService extends CommandService<L
     }
 
     @Override
-    public List<ParkSlot> run(String[] params) throws Exception{
+    public List<ParkSlot> run(String[] params) throws Exception {
         String carColor = params[1];
 
         List<ParkSlot> parkSlots = parkSlotRepository.getAll();

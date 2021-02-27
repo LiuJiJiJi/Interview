@@ -15,7 +15,6 @@ public enum ColorEnum {
     }
 
 
-
     public static ColorEnum getEnumByValue(String value) {
         try {
             value = value.toUpperCase();

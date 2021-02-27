@@ -19,7 +19,7 @@ public class ParkHistoryRepositoryTest {
     private final ParkSlotRepository parkSlotRepository = CommonBeanConfig.parkSlotRepository;
 
     @After
-    public void after() throws Exception{
+    public void after() throws Exception {
         parkSlotRepository.deleteAll();
     }
 
@@ -74,7 +74,7 @@ public class ParkHistoryRepositoryTest {
     }
 
     @Test
-    public void updateTest() throws Exception{
+    public void updateTest() throws Exception {
         String slotNumber = "3";
         String carNumber = GenerateUtil.singaporeCarnumber();
         String carColor = ColorEnum.WHITE.value;
@@ -90,7 +90,7 @@ public class ParkHistoryRepositoryTest {
         Thread.sleep(2000L);
         Date leaveTime = new Date();
         parkHistory.setLeaveTime(leaveTime);
-        Long parkSecond = (parkHistory.getLeaveTime().getTime() - parkHistory.getEnterTime().getTime())/1000;
+        Long parkSecond = (parkHistory.getLeaveTime().getTime() - parkHistory.getEnterTime().getTime()) / 1000;
         parkHistory.setParkSecond(parkSecond);
         parkHistory.setCost(10.0);
         parkHistory.setDiscount(10.0);
@@ -107,7 +107,7 @@ public class ParkHistoryRepositoryTest {
         assertEquals("10.0", parkHistory.getDiscount().toString());
         assertEquals("0.0", parkHistory.getFinalCost().toString());
         assertEquals(parkSecond, parkHistory.getParkSecond());
-        assertEquals(leaveTime.getTime()/1000, parkHistory.getLeaveTime().getTime()/1000);
+        assertEquals(leaveTime.getTime() / 1000, parkHistory.getLeaveTime().getTime() / 1000);
     }
 
 }
